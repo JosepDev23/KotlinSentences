@@ -5,15 +5,16 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import dadm.jramrib.kotlinsentences.R
 import dadm.jramrib.kotlinsentences.databinding.FragmentNewQuotationBinding
+import dadm.jramrib.kotlinsentences.databinding.FragmentSettingsBinding
 
 class SettingsFragment:  Fragment(R.layout.fragment_settings){
-    var _binding: FragmentNewQuotationBinding? = null
-    val binding
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding
         get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentNewQuotationBinding.bind(view)
+        _binding = FragmentSettingsBinding.bind(view)
     }
 
     override fun onDestroyView() {

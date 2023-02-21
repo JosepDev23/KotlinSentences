@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import dadm.jramrib.kotlinsentences.R
 import dadm.jramrib.kotlinsentences.databinding.FragmentNewQuotationBinding
 
-class NewQuotationFragment:  Fragment(R.layout.fragment_new_quotation){
-    var _binding: FragmentNewQuotationBinding? = null
-    val binding
+class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation){
+    private var _binding: FragmentNewQuotationBinding? = null
+    private val binding
         get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
