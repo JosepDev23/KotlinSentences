@@ -6,6 +6,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationBarView
 import dadm.jramrib.kotlinsentences.R
 import dadm.jramrib.kotlinsentences.databinding.ActivityMainBinding
 
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         val navController = binding.fragmentContainerView.getFragment<NavHostFragment>().navController
+
+        binding.bottomNavigationView as NavigationBarView
         binding.bottomNavigationView.setupWithNavController(navController)
 
         setSupportActionBar(binding.materialToolBar)
