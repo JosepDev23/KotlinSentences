@@ -6,4 +6,5 @@
     <string name="about">About</string>
     <string name="about_content">KotlinQuotes by \n\nJosep\n\njosepdev23@gmail.com\n\nDeveloped for DADM 2023</string>
     <string name="josep_real">josep real</string>
+    <string name="addButton">add button</string>
 </resources>
