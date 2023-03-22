@@ -27,6 +27,7 @@ class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation), MenuProvi
         requireActivity().addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         binding.swipeToRefresh.setOnRefreshListener { viewModel.getNewQuotation() }
+        binding.addButton.setOnClickListener { viewModel.addToFavourites() }
 
         viewModel.userName.observe(viewLifecycleOwner) {
             binding.tvGreetings.text = getString(R.string.welcomeMsg, it)
@@ -47,6 +48,10 @@ class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation), MenuProvi
 
         viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.swipeToRefresh.isRefreshing = it
+        }
+
+        viewModel.isAddButtonVisible.observe(viewLifecycleOwner) {
+            binding.addButton.isVisible = it
         }
     }
 

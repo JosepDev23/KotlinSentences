@@ -19,6 +19,10 @@ class NewQuotationViewModel: ViewModel() {
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
+    private val _isAddButtonVisible = MutableLiveData(false)
+    val isAddButtonVisible: LiveData<Boolean>
+        get() = _isAddButtonVisible
+
     val isGreetingsVisible = quotation.map { it.id.isEmpty() }
 
     private fun getUserName(): String {
@@ -29,6 +33,11 @@ class NewQuotationViewModel: ViewModel() {
         _isLoading.value = true
         val num = (0..99).random().toString();
         _quotation.value = Quotation(num, "Quotation text #$num", "Author #$num")
+        _isAddButtonVisible.value = true
         _isLoading.value = false
+    }
+
+    fun addToFavourites() {
+        _isAddButtonVisible.value = false
     }
 }
