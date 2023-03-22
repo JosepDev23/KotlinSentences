@@ -9,4 +9,5 @@
     <string name="addButton">add button</string>
     <string name="welcomeMsg">Hello %1s!,\n\nRefresh to get a new quotation\n\n(swipe down or options menu)</string>
     <string name="anonymous">Anonymous</string>
+    <string name="refresh">Refresh</string>
 </resources>
