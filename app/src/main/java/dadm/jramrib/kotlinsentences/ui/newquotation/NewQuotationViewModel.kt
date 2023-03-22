@@ -3,13 +3,32 @@ package dadm.jramrib.kotlinsentences.ui.newquotation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
+import dadm.jramrib.kotlinsentences.domain.model.Quotation
 
 class NewQuotationViewModel: ViewModel() {
-    private val _mutableUserName = MutableLiveData(getUserName())
+    private val _userName = MutableLiveData(getUserName())
     val userName: LiveData<String>
-        get() = _mutableUserName
+        get() = _userName
+
+    private val _quotation = MutableLiveData<Quotation>()
+    val quotation: LiveData<Quotation>
+        get() = _quotation
+
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
+    val isGreetingsVisible = quotation.map { it.id.isEmpty() }
 
     private fun getUserName(): String {
         return setOf("Alice", "Bob", "Charlie", "David", "Emma").random()
+    }
+
+    fun getNewQuotation() {
+        _isLoading.value = true
+        val num = (0..99).random().toString();
+        _quotation.value = Quotation(num, "Quotation text #$num", "Author #$num")
+        _isLoading.value = false
     }
 }
