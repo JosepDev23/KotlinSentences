@@ -7,4 +7,5 @@
     <string name="about_content">KotlinQuotes by \n\nJosep\n\njosepdev23@gmail.com\n\nDeveloped for DADM 2023</string>
     <string name="josep_real">josep real</string>
     <string name="addButton">add button</string>
+    <string name="greetings">Hello %1s!,\n\nRefresh to get a new quotation\n\n(swipe down or options menu)</string>
 </resources>
