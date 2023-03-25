@@ -3,13 +3,16 @@ package dadm.jramrib.kotlinsentences.ui.favourites
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import dadm.jramrib.kotlinsentences.domain.model.Quotation
 
 class FavouritesViewModel: ViewModel() {
 
-    private val _favList = MutableLiveData(getFavouriteQuotations())
-    val favList: LiveData<List<Quotation>>
-        get() = _favList
+    private val _favouriteQuotations = MutableLiveData(getFavouriteQuotations())
+    val favouriteQuotations: LiveData<List<Quotation>>
+        get() = _favouriteQuotations
+
+    val isDeleteAllVisible = favouriteQuotations.map() { it.isNotEmpty() }
 
     private fun getFavouriteQuotations(): List<Quotation> {
         val favouriteQuotations = mutableListOf<Quotation>()
@@ -18,5 +21,9 @@ class FavouritesViewModel: ViewModel() {
             favouriteQuotations.add(Quotation(randNumber, "Quotation text #$randNumber", "Author #$randNumber"))
         }
         return favouriteQuotations
+    }
+
+    fun deleteAllQuotations() {
+        _favouriteQuotations.value = emptyList()
     }
 }

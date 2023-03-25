@@ -19,5 +19,14 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="dadm.jramrib.kotlinsentences.ui.settings.SettingsFragment"
-        android:label="@string/settings" />
+        android:label="@string/settings">
+        <action
+            android:id="@+id/actionDeleteAllDialogFragment"
+            app:destination="@+id/deleteAllDialogFragment"/>
+    </fragment>
+
+    <dialog
+        android:id="@+id/deleteAllDialogFragment"
+        android:name="dadm.jramrib.kotlinsentences.ui.favourites.DeleteAllDialogFragment"
+        android:label="@string/deleteFavouriteQuotationsAlertTitle"/>
 </navigation>

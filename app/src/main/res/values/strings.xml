@@ -10,4 +10,9 @@
     <string name="welcomeMsg">Hello %1s!,\n\nRefresh to get a new quotation\n\n(swipe down or options menu)</string>
     <string name="anonymous">Anonymous</string>
     <string name="refresh">Refresh</string>
+    <string name="deleteFavouriteQuotationsAlertTitle">Delete all favourite quotations</string>
+    <string name="deleteFavouriteQuotationsAlertMessage">Do you really want to delete all quotations?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="deleteAllQuotations">Delete all quotations</string>
 </resources>
