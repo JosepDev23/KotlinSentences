@@ -57,6 +57,7 @@
             android:id="@+id/addButton"
             android:src="@drawable/baseline_add_to_photos_24"
             android:layout_gravity="bottom|end"
+            android:visibility="invisible"
             android:contentDescription="@string/addButton">
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>

@@ -26,19 +26,15 @@ class NewQuotationViewModel @Inject constructor(
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
-    private val _isAddButtonVisible = MutableLiveData(false)
-    val isAddButtonVisible: LiveData<Boolean>
-        get() = _isAddButtonVisible
+    val isAddButtonVisible: LiveData<Boolean> = quotation.switchMap() { quotation ->
+        favouritesRepository.getFavouriteQuotationById(quotation.id).asLiveData()
+    }.map() { favourite -> favourite == null }
 
     private val _repositoryError = MutableLiveData<Throwable?>()
     val repositoryError: LiveData<Throwable?>
         get() = _repositoryError
 
     val isGreetingsVisible = quotation.map { it.id.isEmpty() }
-
-    private fun getUserName(): String {
-        return setOf("Alice", "Bob", "Charlie", "David", "Emma").random()
-    }
 
     fun getNewQuotation() {
         _isLoading.value = true
@@ -50,7 +46,6 @@ class NewQuotationViewModel @Inject constructor(
             )
         }
 
-        _isAddButtonVisible.value = true
         _isLoading.value = false
     }
 
