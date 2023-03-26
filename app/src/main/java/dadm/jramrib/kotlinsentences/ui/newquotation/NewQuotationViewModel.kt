@@ -1,6 +1,7 @@
 package dadm.jramrib.kotlinsentences.ui.newquotation
 
 import androidx.lifecycle.*
+import dadm.jramrib.kotlinsentences.data.favourites.FavouritesRepository
 import dadm.jramrib.kotlinsentences.data.newquotation.NewQuotationManager
 import dadm.jramrib.kotlinsentences.data.newquotation.NewQuotationRepository
 import dadm.jramrib.kotlinsentences.data.settings.SettingsRepository
@@ -11,9 +12,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewQuotationViewModel @Inject constructor(
-    var newQuotationRepository: NewQuotationRepository,
     settingsRepository: SettingsRepository,
-    var newQuotationManager: NewQuotationManager
+    var newQuotationManager: NewQuotationManager,
+    var favouritesRepository: FavouritesRepository
 ): ViewModel() {
     val userName: LiveData<String> = settingsRepository.getUsername().asLiveData()
 
@@ -54,7 +55,13 @@ class NewQuotationViewModel @Inject constructor(
     }
 
     fun addToFavourites() {
-        _isAddButtonVisible.value = false
+        viewModelScope.launch {
+            try {
+                favouritesRepository.postFavouriteQuotation(quotation.value!!)
+            } catch (e: Exception) {
+                _repositoryError.value = e
+            }
+        }
     }
 
     fun resetError() {
