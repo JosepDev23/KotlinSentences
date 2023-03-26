@@ -9,9 +9,9 @@ class NewQuotationRepositoryImpl @Inject constructor(
     var newQuotationDataSource: NewQuotationDataSource,
     var connectivityChecker: ConnectivityChecker
 ): NewQuotationRepository {
-    override suspend fun getNewQuotation(): Result<Quotation> {
+    override suspend fun getNewQuotation(language: String): Result<Quotation> {
         return if (connectivityChecker.isConnectionAvailable()) {
-            newQuotationDataSource.getQuotation(arrayOf("en", "ru", "xx").random()).toDomain()
+            newQuotationDataSource.getQuotation(language).toDomain()
         } else {
             Result.failure(NoInternetException())
         }

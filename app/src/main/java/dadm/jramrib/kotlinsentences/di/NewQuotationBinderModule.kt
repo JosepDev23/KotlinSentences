@@ -1,9 +1,6 @@
 package dadm.jramrib.kotlinsentences.di
 
-import dadm.jramrib.kotlinsentences.data.newquotation.NewQuotationDataSource
-import dadm.jramrib.kotlinsentences.data.newquotation.NewQuotationDataSourceImpl
-import dadm.jramrib.kotlinsentences.data.newquotation.NewQuotationRepository
-import dadm.jramrib.kotlinsentences.data.newquotation.NewQuotationRepositoryImpl
+import dadm.jramrib.kotlinsentences.data.newquotation.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,5 +19,10 @@ abstract class NewQuotationBinderModule {
     abstract fun bindNewQuotationDataSource(
         newQuotationDataSourceImpl: NewQuotationDataSourceImpl
     ): NewQuotationDataSource
+
+    @Binds
+    abstract fun provideNewQuotationManager(
+        newQuotationManagerImpl: NewQuotationManagerImpl
+    ): NewQuotationManager
 
 }

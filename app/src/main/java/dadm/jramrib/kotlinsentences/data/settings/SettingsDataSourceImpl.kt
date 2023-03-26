@@ -17,7 +17,7 @@ class SettingsDataSourceImpl @Inject constructor(
         const val KEY_LANGUAGE = "language"
     }
 
-    override fun getUserName(): Flow<String> = callbackFlow {
+    override fun getUsername(): Flow<String> = callbackFlow {
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
             launch(Dispatchers.IO) {
                 if (KEY_USERNAME == key) {
@@ -28,9 +28,25 @@ class SettingsDataSourceImpl @Inject constructor(
         sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
         trySend(getUsernamePreference())
         awaitClose {
-            sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener) }
+            sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
+        }
     }.flowOn(Dispatchers.IO)
 
-    private fun getLanguagePreference() = sharedPreferences.getString(KEY_LANGUAGE, "") ?: ""
+    override fun getLanguage(): Flow<String> = callbackFlow {
+        val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            launch(Dispatchers.IO) {
+                if (KEY_LANGUAGE == key) {
+                    trySend(getLanguagePreference())
+                }
+            }
+        }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+        trySend(getLanguagePreference())
+        awaitClose {
+            sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
+        }
+    }.flowOn(Dispatchers.IO)
+
     private fun getUsernamePreference() = sharedPreferences.getString(KEY_USERNAME, "") ?: ""
+    private fun getLanguagePreference() = sharedPreferences.getString(KEY_LANGUAGE, "") ?: ""
 }

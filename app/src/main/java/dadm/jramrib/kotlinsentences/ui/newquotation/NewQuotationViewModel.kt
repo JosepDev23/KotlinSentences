@@ -1,6 +1,7 @@
 package dadm.jramrib.kotlinsentences.ui.newquotation
 
 import androidx.lifecycle.*
+import dadm.jramrib.kotlinsentences.data.newquotation.NewQuotationManager
 import dadm.jramrib.kotlinsentences.data.newquotation.NewQuotationRepository
 import dadm.jramrib.kotlinsentences.data.settings.SettingsRepository
 import dadm.jramrib.kotlinsentences.domain.model.Quotation
@@ -11,7 +12,8 @@ import javax.inject.Inject
 @HiltViewModel
 class NewQuotationViewModel @Inject constructor(
     var newQuotationRepository: NewQuotationRepository,
-    settingsRepository: SettingsRepository
+    settingsRepository: SettingsRepository,
+    var newQuotationManager: NewQuotationManager
 ): ViewModel() {
     val userName: LiveData<String> = settingsRepository.getUsername().asLiveData()
 
@@ -41,7 +43,7 @@ class NewQuotationViewModel @Inject constructor(
         _isLoading.value = true
 
         viewModelScope.launch {
-            newQuotationRepository.getNewQuotation().fold(
+            newQuotationManager.getNewQuotation().fold(
                 onSuccess = { _quotation.value = it },
                 onFailure = { _repositoryError.value = it }
             )
