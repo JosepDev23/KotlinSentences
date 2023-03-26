@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import com.google.android.material.snackbar.Snackbar
 import dadm.jramrib.kotlinsentences.R
 import dadm.jramrib.kotlinsentences.databinding.FragmentNewQuotationBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,6 +57,21 @@ class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation), MenuProvi
 
         viewModel.isAddButtonVisible.observe(viewLifecycleOwner) {
             binding.addButton.isVisible = it
+        }
+
+        viewModel.repositoryError.observe(viewLifecycleOwner) { error ->
+            if (error != null) {
+                when (error) {
+                    else -> {
+                        Snackbar.make(
+                            binding.root,
+                            getString(R.string.unkownError),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                viewModel.resetError()
+            }
         }
     }
 

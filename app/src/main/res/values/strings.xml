@@ -18,4 +18,5 @@
     <string name="anonymusError">Information cannot be displayed if the author is anonymous</string>
     <string name="baseWikiUri" translatable="false">https://en.wikipedia.org/wiki/Special:Search?search=%1s</string>
     <string name="errorPageNotFound">Cannot display the requested page</string>
+    <string name="unkownError">Unknown error</string>
 </resources>

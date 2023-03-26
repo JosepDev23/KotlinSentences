@@ -6,9 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import dadm.jramrib.kotlinsentences.domain.model.Quotation
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 @HiltViewModel
-class FavouritesViewModel: ViewModel() {
+class FavouritesViewModel @Inject constructor(): ViewModel() {
 
     private val _favouriteQuotations = MutableLiveData(getFavouriteQuotations())
     val favouriteQuotations: LiveData<List<Quotation>>

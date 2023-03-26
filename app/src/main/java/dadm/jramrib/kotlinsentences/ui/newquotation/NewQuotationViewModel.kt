@@ -1,14 +1,16 @@
 package dadm.jramrib.kotlinsentences.ui.newquotation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
+import androidx.lifecycle.*
+import dadm.jramrib.kotlinsentences.data.newquotation.NewQuotationRepository
 import dadm.jramrib.kotlinsentences.domain.model.Quotation
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class NewQuotationViewModel: ViewModel() {
+class NewQuotationViewModel @Inject constructor(
+    var newQuotationRepository: NewQuotationRepository
+): ViewModel() {
     private val _userName = MutableLiveData(getUserName())
     val userName: LiveData<String>
         get() = _userName
@@ -25,6 +27,10 @@ class NewQuotationViewModel: ViewModel() {
     val isAddButtonVisible: LiveData<Boolean>
         get() = _isAddButtonVisible
 
+    private val _repositoryError = MutableLiveData<Throwable?>()
+    val repositoryError: LiveData<Throwable?>
+        get() = _repositoryError
+
     val isGreetingsVisible = quotation.map { it.id.isEmpty() }
 
     private fun getUserName(): String {
@@ -33,13 +39,23 @@ class NewQuotationViewModel: ViewModel() {
 
     fun getNewQuotation() {
         _isLoading.value = true
-        val num = (0..99).random().toString();
-        _quotation.value = Quotation(num, "Quotation text #$num", "Author #$num")
+
+        viewModelScope.launch {
+            newQuotationRepository.getNewQuotation().fold(
+                onSuccess = { _quotation.value = it },
+                onFailure = { _repositoryError.value = it }
+            )
+        }
+
         _isAddButtonVisible.value = true
         _isLoading.value = false
     }
 
     fun addToFavourites() {
         _isAddButtonVisible.value = false
+    }
+
+    fun resetError() {
+        _repositoryError.value = null
     }
 }
