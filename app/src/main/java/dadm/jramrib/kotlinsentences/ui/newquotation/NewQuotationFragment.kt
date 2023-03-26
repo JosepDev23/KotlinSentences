@@ -14,6 +14,7 @@ import androidx.lifecycle.Lifecycle
 import com.google.android.material.snackbar.Snackbar
 import dadm.jramrib.kotlinsentences.R
 import dadm.jramrib.kotlinsentences.databinding.FragmentNewQuotationBinding
+import dadm.jramrib.kotlinsentences.utils.NoInternetException
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -62,6 +63,13 @@ class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation), MenuProvi
         viewModel.repositoryError.observe(viewLifecycleOwner) { error ->
             if (error != null) {
                 when (error) {
+                    is NoInternetException -> {
+                        Snackbar.make(
+                            binding.root,
+                            getString(R.string.noInternetException),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
                     else -> {
                         Snackbar.make(
                             binding.root,
