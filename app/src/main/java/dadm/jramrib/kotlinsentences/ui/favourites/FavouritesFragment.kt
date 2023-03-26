@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import dadm.jramrib.kotlinsentences.R
 import dadm.jramrib.kotlinsentences.databinding.FragmentFavouritesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavouritesFragment: Fragment(R.layout.fragment_favourites), MenuProvider {
     private var _binding: FragmentFavouritesBinding? = null
     val binding

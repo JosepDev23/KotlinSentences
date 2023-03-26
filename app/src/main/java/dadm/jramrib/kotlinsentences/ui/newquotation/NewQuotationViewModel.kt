@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import dadm.jramrib.kotlinsentences.domain.model.Quotation
+import dagger.hilt.android.lifecycle.HiltViewModel
 
+@HiltViewModel
 class NewQuotationViewModel: ViewModel() {
     private val _userName = MutableLiveData(getUserName())
     val userName: LiveData<String>
