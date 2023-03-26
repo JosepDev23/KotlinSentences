@@ -18,8 +18,16 @@ class FavouritesViewModel @Inject constructor(
     val isDeleteAllVisible = favouriteQuotations.map() { it.isNotEmpty() }
 
     fun deleteAllQuotations() {
+        viewModelScope.launch {
+            favouritesRepository.deleteAllFavouriteQuotations()
+        }
     }
 
     fun deleteQuotationAtPosition(position: Int) {
+        viewModelScope.launch {
+            favouriteQuotations.value?.toMutableList()?.get(position)?.let {
+                favouritesRepository.deleteFavouriteQuotation(it)
+            }
+        }
     }
 }
