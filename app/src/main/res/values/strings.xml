@@ -15,4 +15,7 @@
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="deleteAllQuotations">Delete all quotations</string>
+    <string name="anonymusError">Information cannot be displayed if the author is anonymus</string>
+    <string name="baseWikiUri">https://en.wikipedia.org/wiki/Special:Search?search=%1s</string>
+    <string name="errorPageNotFound">Cannot display the requested page</string>
 </resources>

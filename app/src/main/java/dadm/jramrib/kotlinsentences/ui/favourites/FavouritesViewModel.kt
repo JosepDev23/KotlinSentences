@@ -18,8 +18,11 @@ class FavouritesViewModel: ViewModel() {
         val favouriteQuotations = mutableListOf<Quotation>()
         for (i in 0..19) {
             val randNumber = (0..99).random().toString()
-            favouriteQuotations.add(Quotation(randNumber, "Quotation text #$randNumber", "Author #$randNumber"))
+            favouriteQuotations.add(
+                Quotation(randNumber, "Quotation text #$randNumber", "Author #$randNumber"))
         }
+        favouriteQuotations.add(Quotation("999", "Quotation text #999", "Albert Einstein"))
+        favouriteQuotations.add(Quotation("888", "Quotation text #888", "Anonymous"))
         return favouriteQuotations
     }
 
@@ -28,8 +31,8 @@ class FavouritesViewModel: ViewModel() {
     }
 
     fun deleteQuotationAtPosition(position: Int) {
-        val newFafouriteQuotations = _favouriteQuotations.value?.toMutableList()
-        newFafouriteQuotations?.removeAt(position)
-        _favouriteQuotations.value = newFafouriteQuotations!!
+        val newFavouriteQuotations = _favouriteQuotations.value?.toMutableList()
+        newFavouriteQuotations?.removeAt(position)
+        _favouriteQuotations.value = newFavouriteQuotations!!
     }
 }
