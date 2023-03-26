@@ -20,4 +20,11 @@
     <string name="errorPageNotFound">Cannot display the requested page</string>
     <string name="unkownError">Unknown error</string>
     <string name="noInternetException">ERROR: missing internet connection</string>
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
+    <string name="en" translatable="false">en</string>
+    <string name="ru" translatable="false">ru</string>
+    <string name="username">Username</string>
+    <string name="language">Language</string>
+    <string name="hintUserName">Insert username</string>
 </resources>
