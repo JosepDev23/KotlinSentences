@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="get_a_new_quotation">Recupera una nueva cita</string>
+    <string name="favourite_quotations">Citas favoritas</string>
+    <string name="settings">Opciones</string>
+    <string name="about">Sobre</string>
+    <string name="josep_real">josep real</string>
+    <string name="addButton">boton añadir</string>
+    <string name="about_content" translatable="false">asdf</string>
+    <string name="welcomeMsg">CitasKotlin por\n\nJosep\n\njosepdev23@gmail.com\n\nDesarrollado para DADM 2023</string>
+    <string name="anonymous">Anónimo</string>
+    <string name="refresh">Refrescar</string>
+    <string name="deleteFavouriteQuotationsAlertTitle">Elimina todas las citas favoritas</string>
+    <string name="deleteFavouriteQuotationsAlertMessage">Seguro que quieres eliminar todas las citas favoritas?</string>
+    <string name="delete">Eliminar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="deleteAllQuotations">Elimina todas las citas</string>
+    <string name="anonymusError">No se puede mostrar la información si el autor es anónimo</string>
+    <string name="errorPageNotFound">No se puede mostrar la página solicitada</string>
+</resources>
