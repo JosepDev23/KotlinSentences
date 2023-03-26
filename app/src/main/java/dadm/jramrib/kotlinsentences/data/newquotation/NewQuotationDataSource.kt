@@ -1,7 +1,8 @@
 package dadm.jramrib.kotlinsentences.data.newquotation
 
-import dadm.jramrib.kotlinsentences.domain.model.Quotation
+import dadm.jramrib.kotlinsentences.data.newquotation.model.QuotationDto
+import retrofit2.Response
 
 interface NewQuotationDataSource {
-    suspend fun getQuotation(): Result<Quotation>
+    suspend fun getQuotation(): Response<QuotationDto>
 }
